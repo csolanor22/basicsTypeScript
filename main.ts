@@ -9,9 +9,11 @@ const ap = new Aprendiz("Juan Pablo", "Gonzales", "avatar.png", 15, NivelEducati
 
 let aprendizTable: HTMLElement = document.getElementById("aprendiz")!;
 let estadisticasTable: HTMLElement = document.getElementById("estadisticas")!;
+let cursosTable: HTMLElement = document.getElementById("cursos")!;
 
 mostrarDatosAprendiz(ap);
 mostrarEstadisticas(ap);
+mostrarCursosAprendiz(ap);
 
 
 function mostrarDatosAprendiz(aprendiz: Aprendiz): void{
@@ -29,4 +31,18 @@ function mostrarEstadisticas(aprendiz: Aprendiz): void{
     let trElement: HTMLElement = document.createElement("tr");
     trElement.innerHTML = `<td><b>Cursos certificados</b></td><td>${numeroCertificados}</td>`;
     estadisticasTable.appendChild(trElement);
+}
+
+function mostrarCursosAprendiz(aprendiz: Aprendiz): void{
+    let cursosTBody: HTMLElement = document.createElement("tbody");
+    for(let curso of aprendiz.cursos){
+        let trElement: HTMLElement = document.createElement("tr");
+        trElement.innerHTML = `<td>${curso.nombreCurso}</td>
+        <td>${curso.horas}</td>
+        <td>${curso.calificacion}</td>
+        <td>${curso.certificado}</td>
+        <td>${curso.anio}</td>`;
+        cursosTBody.appendChild(trElement);
+    }
+    cursosTable.appendChild(cursosTBody);
 }
